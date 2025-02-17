@@ -7,18 +7,21 @@ let modInfo = {
 	discordName: "TGT Official Discord Server",
 	discordLink: "https://discord.gg/R6hNx75skd",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
-	offlineLimit: 168,  // In hours
+	offlineLimit: 0,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "α1",
-	name: "Test Build 1",
+	num: "α2",
+	name: "Test Build 2",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>vα1</h3><br>
-		- Added things. yes. that's it.<br>`
+		- Added 1 layer, 12 upgrades, 3 buyables, 4 milestones.<br>
+	<h3>vα2</h3><br>
+		- Added 1 layer, 10 upgrades, 5 buyables, 9 milestones.<br>
+	`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -41,17 +44,29 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
-	if(hasUpgrade('p', 11)) gain = gain.add(new Decimal(1));
-	if(hasUpgrade('p', 12)) gain = gain.add(new Decimal(1));
-	if(hasUpgrade('p', 13)) gain = gain.add(new Decimal(1));
-	if(hasUpgrade('p', 14)) gain = gain.add(new Decimal(1));
+	if(hasUpgrade('p', 11)) gain = gain.add(new Decimal(1))
+	if(hasUpgrade('p', 12)) gain = gain.add(new Decimal(1))
+	if(hasUpgrade('p', 13)) gain = gain.add(new Decimal(1))
+	if(hasUpgrade('p', 14)) gain = gain.add(new Decimal(1))
 	if(getBuyableAmount('p', 11).gt(0)) gain = gain.add(buyableEffect('p', 11))
+	if(getBuyableAmount('p', 21).gt(0)) gain = gain.add(buyableEffect('p', 21))
+	if(hasUpgrade('r', 11)) gain = gain.add(new Decimal(10))
+	if(hasUpgrade('r', 12)) gain = gain.add(new Decimal(90))
+	if(hasUpgrade('r', 13)) gain = gain.add(new Decimal(200))
+	if(hasUpgrade('r', 14)) gain = gain.add(new Decimal(200))
+	if(hasUpgrade('r', 15)) gain = gain.add(new Decimal(500))
 
-	if(hasUpgrade('p', 21)) gain = gain.mul(new Decimal("1.25"));
-	if(hasUpgrade('p', 22)) gain = gain.mul(new Decimal("1.25"));
-	if(hasUpgrade('p', 23)) gain = gain.mul(new Decimal("1.25"));
-	if(hasUpgrade('p', 24)) gain = gain.mul(new Decimal("1.25"));
+	if(hasUpgrade('p', 21)) gain = gain.mul(new Decimal("1.25"))
+	if(hasUpgrade('p', 22)) gain = gain.mul(new Decimal("1.25"))
+	if(hasUpgrade('p', 23)) gain = gain.mul(new Decimal("1.25"))
+	if(hasUpgrade('p', 24)) gain = gain.mul(new Decimal("1.25"))
 	if(getBuyableAmount('p', 12).gt(0)) gain = gain.mul(buyableEffect('p', 12))
+	if(getBuyableAmount('p', 22).gt(0)) gain = gain.mul(buyableEffect('p', 22))
+    if(hasMilestone('p', 7)) gain = gain.mul(new Decimal(2))
+    if(hasMilestone('p', 8)) gain = gain.mul(new Decimal('1.5'))
+    if(hasMilestone('p', 9)) gain = gain.mul(new Decimal('1.5'))
+    if(hasMilestone('p', 10)) gain = gain.mul(new Decimal(2))
+    if(hasMilestone('r', 1)) gain = gain.mul(new Decimal(2))
 
 	return gain
 }
