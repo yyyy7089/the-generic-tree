@@ -470,7 +470,6 @@ addLayer("r", {
     hotkeys: [
         {key: "r", description: "R: Reset for rebirth points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true},
     tabFormat: {
         "Upgrades": {
             content:[
