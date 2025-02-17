@@ -12,15 +12,17 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "α2",
-	name: "Test Build 2",
+	num: "α3",
+	name: "Test Build 3",
 }
 
-let changelog = `<h1>Changelog:</h1><br>
+let changelog = `<h1>Changelog</h1><br><br>
 	<h3>vα1</h3><br>
-		- Added 1 layer, 12 upgrades, 3 buyables, 4 milestones.<br>
+		Added 1 layer, 12 upgrades, 3 buyables, 4 milestones.<br><br>
 	<h3>vα2</h3><br>
-		- Added 1 layer, 10 upgrades, 5 buyables, 9 milestones.<br>
+		Added 1 layer, 10 upgrades, 5 buyables, 9 milestones.<br><br>
+	<h3>vα3</h3><br>
+		Added 1 layer, 8 upgrades, 1 buyable, 4 milestones, 1 challenge.<br><br>
 	`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -54,12 +56,25 @@ function getPointGen() {
 	if(hasUpgrade('r', 12)) gain = gain.add(new Decimal(90))
 	if(hasUpgrade('r', 13)) gain = gain.add(new Decimal(200))
 	if(hasUpgrade('r', 14)) gain = gain.add(new Decimal(200))
-	if(hasUpgrade('r', 15)) gain = gain.add(new Decimal(500))
+	if(hasUpgrade('t', 11)) gain = gain.add(new Decimal(2))
+	if(hasUpgrade('t', 12)) gain = gain.add(new Decimal(2))
 
-	if(hasUpgrade('p', 21)) gain = gain.mul(new Decimal("1.25"))
-	if(hasUpgrade('p', 22)) gain = gain.mul(new Decimal("1.25"))
-	if(hasUpgrade('p', 23)) gain = gain.mul(new Decimal("1.25"))
-	if(hasUpgrade('p', 24)) gain = gain.mul(new Decimal("1.25"))
+	if(hasUpgrade('p', 21)){
+		if(hasChallenge('t', 11)) gain = gain.mul(new Decimal('1.5'))
+		else gain = gain.mul(new Decimal('1.25'))
+	}
+	if(hasUpgrade('p', 22)){
+		if(hasChallenge('t', 11)) gain = gain.mul(new Decimal('1.5'))
+		else gain = gain.mul(new Decimal('1.25'))
+	}
+	if(hasUpgrade('p', 23)){
+		if(hasChallenge('t', 11)) gain = gain.mul(new Decimal('1.5'))
+		else gain = gain.mul(new Decimal('1.25'))
+	}
+	if(hasUpgrade('p', 24)){
+		if(hasChallenge('t', 11)) gain = gain.mul(new Decimal('1.5'))
+		else gain = gain.mul(new Decimal('1.25'))
+	}
 	if(getBuyableAmount('p', 12).gt(0)) gain = gain.mul(buyableEffect('p', 12))
 	if(getBuyableAmount('p', 22).gt(0)) gain = gain.mul(buyableEffect('p', 22))
     if(hasMilestone('p', 7)) gain = gain.mul(new Decimal(2))
@@ -67,6 +82,8 @@ function getPointGen() {
     if(hasMilestone('p', 9)) gain = gain.mul(new Decimal('1.5'))
     if(hasMilestone('p', 10)) gain = gain.mul(new Decimal(2))
     if(hasMilestone('r', 1)) gain = gain.mul(new Decimal(2))
+    if(hasUpgrade('r', 23)) gain = gain.mul(new Decimal(2))
+    if(hasMilestone('t', 1)) gain = gain.mul(new Decimal('1.5'))
 
 	return gain
 }
