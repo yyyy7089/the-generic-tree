@@ -840,7 +840,7 @@ addLayer("t", {
         11: {
             unlocked(){return hasMilestone(this.layer, 3)},
             name: "no upgrades",
-            fullDisplay: "you cannot buy pp upgrade 11, but milestone tab and all buyables are unlocked from the beginning.<br><br>"
+            fullDisplay: "you cannot buy pp upgrade <i>points gain I</i>, but milestone tab and all buyables are unlocked from the beginning.<br><br>"
             + "goal: 5.00e9 points<br>"
             + "reward: <i>points multiplier I</i>~<i>IV</i>'s multiplier is changed to 1.5<br>(won't show visually)",
             canComplete: function(){return player.points.gte(new Decimal('5e9'))}

@@ -12,21 +12,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "α3.2",
-	name: "Test Build 3.2",
+	num: "0.0",
+	name: "Release",
 }
 
 let changelog = `<h1>Changelog</h1><br><br>
-	<h3>vα1</h3><br>
-		Added 1 layer, 12 upgrades, 3 buyables, 4 milestones.<br><br>
-	<h3>vα2</h3><br>
-		Added 1 layer, 10 upgrades, 5 buyables, 9 milestones.<br><br>
-	<h3>vα3</h3><br>
-		Added 1 layer, 8 upgrades, 1 buyable, 4 milestones, 1 challenge.<br><br>
-	<h3>vα3.1</h3><br>
-		Fixed stuffs and balances.<br><br>
-	<h3>vα3.2</h3><br>
-		Fixed balances.<br><br>
+	<h3>v0.0: Release</h3><br>
+		Added 3 layers, 30 upgrades, 9 buyables, 17 milestones, 1 challenge.<br>
+		Endgame: Challenge <i>no upgrades</i><br><br>
 	`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -102,7 +95,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return hasChallenge('t', 11)
 }
 
 
