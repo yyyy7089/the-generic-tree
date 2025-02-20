@@ -215,7 +215,7 @@ addLayer("p", {
             title: "points multiplier ∞",
             unlocked() {return hasUpgrade('p', 25) || hasUpgrade('r', 21) || inChallenge('t', 11)},
             display() {
-                return "x" + format(this.base())+ " base points gain per purchase.<br><br>" +
+                return "x" + format(this.base())+ " points gain per purchase.<br><br>" +
                 "bought: " + format(this.bought()) + " / "+ format(this.purchaselimit()) + "<br>" +
                 "cost: " + format(this.cost()) + " prestige points<br>" +
                 "effect: " + format(this.effect()) + "x"
@@ -331,7 +331,7 @@ addLayer("p", {
             title: "points multiplier ∞ II",
             unlocked() {return hasUpgrade('p', 34) || hasUpgrade('r', 22) || inChallenge('t', 11)},
             display() {
-                return "x" + format(this.base())+ " base points gain per purchase.<br><br>" +
+                return "x" + format(this.base())+ " points gain per purchase.<br><br>" +
                 "bought: " + format(this.bought()) + " / "+ format(this.purchaselimit()) + "<br>" +
                 "cost: " + format(this.cost()) + " prestige points<br>" +
                 "effect: " + format(this.effect()) + "x"
@@ -410,7 +410,7 @@ addLayer("p", {
         },
         4: {
             requirementDescription: "Have 100,000 points at once",
-            effectDescription: "x1.3 prestige points gain, and unlock a new upgrade.",
+            effectDescription: "x1.3 prestige points gain.",
             unlocked() {return hasMilestone('p', 2)},
             done() {return this.unlocked() && player.points.gte(new Decimal('100000'))}
         },
@@ -477,6 +477,8 @@ addLayer("r", {
         mult = new Decimal(1)
         if(hasMilestone('r', 3)) mult = mult.mul(new Decimal(2))
         if(hasUpgrade('r', 25)) mult = mult.mul(new Decimal(2))
+        if(hasMilestone('t', 1)) mult = mult.mul(new Decimal(2))
+        if(hasMilestone('t', 2)) mult = mult.mul(new Decimal(2))
         return mult
     },
     gainExp() {
@@ -545,12 +547,12 @@ addLayer("r", {
         },
         21: {
             title: "buyable unlock keeper I",
-            description: "first row of prestige layer milestones are always unlocked.",
+            description: "first row of prestige layer buyables are always unlocked.",
             cost: new Decimal(1),
         },
         22: {
             title: "buyable unlock keeper II",
-            description: "second row of prestige layer milestones are always unlocked.",
+            description: "second row of prestige layer buyables are always unlocked.",
             cost: new Decimal(4),
             unlocked() {return hasUpgrade(this.layer, 21)},
         },
@@ -670,7 +672,7 @@ addLayer("r", {
                 return "x" + format(this.base()) + " prestige points gain per purchase.<br><br>" +
                 "bought: " + format(this.bought()) + " / "+ format(this.purchaselimit()) + "<br>" +
                 "cost: " + format(this.cost()) + " rebirth points<br>" +
-                "effect: +" + format(this.effect()) + ""
+                "effect: " + format(this.effect()) + "x"
             },
             purchaselimit() {
                 return new Decimal(4)
@@ -724,7 +726,7 @@ addLayer("t", {
 		points: new Decimal(0),
     }},
     color: "#AF7FFF",
-    requires: new Decimal('1000'),
+    requires: new Decimal('500'),
     resource: "transcend points",
     baseResource: "rebirth points",
     baseAmount() {return player.r.points},
@@ -817,13 +819,13 @@ addLayer("t", {
     milestones: {
         1: {
             requirementDescription: "1 total transcend points",
-            effectDescription: "x1.5 points gain and x2 prestige points gain.",
+            effectDescription: "x1.5 points gain and x2 pp & rp gain.",
             unlocked() {return true},
             done() {return this.unlocked() && player[this.layer].total.gte(new Decimal(1))}
         },
         2: {
             requirementDescription: "2 total transcend points",
-            effectDescription: "x2 prestige points gain again.",
+            effectDescription: "x2 pp & rp gain again.",
             unlocked() {return true},
             done() {return this.unlocked() && player[this.layer].total.gte(new Decimal(2))}
         },

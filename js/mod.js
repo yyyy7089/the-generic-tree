@@ -12,8 +12,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "α3",
-	name: "Test Build 3",
+	num: "α3.1",
+	name: "Test Build 3.1",
 }
 
 let changelog = `<h1>Changelog</h1><br><br>
@@ -23,6 +23,8 @@ let changelog = `<h1>Changelog</h1><br><br>
 		Added 1 layer, 10 upgrades, 5 buyables, 9 milestones.<br><br>
 	<h3>vα3</h3><br>
 		Added 1 layer, 8 upgrades, 1 buyable, 4 milestones, 1 challenge.<br><br>
+	<h3>vα3.1</h3><br>
+		Fixed stuffs and balances.<br><br>
 	`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
