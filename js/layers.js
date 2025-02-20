@@ -157,8 +157,8 @@ addLayer("p", {
     },
     buyableCostDiv() {
         val = new Decimal(1)
-        if(hasUpgrade('t', 21)) val = val.mul(2)
-        if(hasUpgrade('t', 22)) val = val.mul(2)
+        if(hasUpgrade('t', 21)) val = val.mul(new Decimal('1.5'))
+        if(hasUpgrade('t', 22)) val = val.mul(new Decimal('1.5'))
         return val
     },
     buyables: {
@@ -785,7 +785,7 @@ addLayer("t", {
     upgrades: {
         11: {
             title: "points gain IX",
-            description: "+2 base points gain.",
+            description: "+20 base points gain.",
             cost: new Decimal(1),
             unlocked() {
                 return true
@@ -793,7 +793,7 @@ addLayer("t", {
         },
         12: {
             title: "points gain X",
-            description: "+2 base points gain.",
+            description: "+80 base points gain.",
             cost: new Decimal(1),
             unlocked() {
                 return hasUpgrade(this.layer, 11)
@@ -801,7 +801,7 @@ addLayer("t", {
         },
         21: {
             title: "cheaper buyables I",
-            description: "/2 all pp buyables' prices.",
+            description: "/1.5 all pp buyables' prices.",
             cost: new Decimal(1),
             unlocked() {
                 return true
@@ -809,7 +809,7 @@ addLayer("t", {
         },
         22: {
             title: "cheaper buyables II",
-            description: "/2 all pp buyables' prices, again.",
+            description: "/1.5 all pp buyables' prices, again.",
             cost: new Decimal(1),
             unlocked() {
                 return hasUpgrade(this.layer, 21)
@@ -841,9 +841,9 @@ addLayer("t", {
             unlocked(){return hasMilestone(this.layer, 3)},
             name: "no upgrades",
             fullDisplay: "you cannot buy pp upgrade 11, but milestone tab and all buyables are unlocked from the beginning.<br><br>"
-            + "goal: 1.00e10 points<br>"
+            + "goal: 5.00e9 points<br>"
             + "reward: <i>points multiplier I</i>~<i>IV</i>'s multiplier is changed to 1.5<br>(won't show visually)",
-            canComplete: function(){return player.points.gte(new Decimal('1e10'))}
+            canComplete: function(){return player.points.gte(new Decimal('5e9'))}
         },
     },
 })

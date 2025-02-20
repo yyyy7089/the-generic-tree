@@ -12,8 +12,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "α3.1",
-	name: "Test Build 3.1",
+	num: "α3.2",
+	name: "Test Build 3.2",
 }
 
 let changelog = `<h1>Changelog</h1><br><br>
@@ -25,6 +25,8 @@ let changelog = `<h1>Changelog</h1><br><br>
 		Added 1 layer, 8 upgrades, 1 buyable, 4 milestones, 1 challenge.<br><br>
 	<h3>vα3.1</h3><br>
 		Fixed stuffs and balances.<br><br>
+	<h3>vα3.2</h3><br>
+		Fixed balances.<br><br>
 	`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -58,8 +60,8 @@ function getPointGen() {
 	if(hasUpgrade('r', 12)) gain = gain.add(new Decimal(90))
 	if(hasUpgrade('r', 13)) gain = gain.add(new Decimal(200))
 	if(hasUpgrade('r', 14)) gain = gain.add(new Decimal(200))
-	if(hasUpgrade('t', 11)) gain = gain.add(new Decimal(2))
-	if(hasUpgrade('t', 12)) gain = gain.add(new Decimal(2))
+	if(hasUpgrade('t', 11)) gain = gain.add(new Decimal(20))
+	if(hasUpgrade('t', 12)) gain = gain.add(new Decimal(80))
 
 	if(hasUpgrade('p', 21)){
 		if(hasChallenge('t', 11)) gain = gain.mul(new Decimal('1.5'))
